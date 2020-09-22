@@ -47,8 +47,8 @@ Questions to ask before starting to write analysis code and Slurm scripts for us
 * How many hours will your job use in total?
   * <10k is meaningless
   * 10k-100k requires some care
-  * >100k requires care
-  * >1m should be carefully tested
+  * \>100k requires care
+  * \>1m should be carefully tested
 * How many times might you re-run the code?
   * <5 times with not many hours: just make things work
   * Otherwise: you should plan your code for use on NERSC
