@@ -3,9 +3,9 @@
 #SBATCH --constraint=knl
 #SBATCH --nodes=200
 #SBATCH --time=02:00:00
-#SBATCH --image=docker:yourname/image:tag
+#SBATCH --image=docker:username/my_image:latest
 
-# 200 nodes for 2 hours using shifter image
+# 200 KNL nodes for 2 hours using shifter image
 
 cores=2
 export MKL_NUM_THREADS=$cores
