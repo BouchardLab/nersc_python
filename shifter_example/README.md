@@ -21,7 +21,7 @@ Push the image to your Docker Hub
 docker push username/my_image:tag
 ```
 
-On a NERSC login node
+On a NERSC login node, pull the image into Shifter
 
 ```bash
 shifterimg -v pull docker:username/my_image:latest
