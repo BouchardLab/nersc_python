@@ -27,4 +27,4 @@ On a NERSC login node, pull the image into Shifter
 shifterimg -v pull docker:username/my_image:latest
 ```
 
-Now, `shifter_example.sh` can be used.
+Now, `shifter_example.sh` can be used. It runs `shifter_example.py` on 4 subjects' datafiles. Within each subject, 1000 tasks are used to run some analysis on each channel and each timepoint using `mpi4py`.
