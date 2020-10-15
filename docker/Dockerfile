@@ -23,6 +23,7 @@ ENV PATH=/home/conda/bin:$PATH
 # Install
 RUN conda update -n base -c defaults conda
 RUN conda install python=3.7
+RUN conda install numpy scipy scikit-learn
 
 WORKDIR /tmp
 
