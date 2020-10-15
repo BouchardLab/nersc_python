@@ -5,19 +5,21 @@ Docker images and example slurm scripts
 
 The `docker` folder contains `Dockerfile` and `entrypoint.sh` files. `Dockerfile` specifies a basic [Python 3.7 conda-based python environment](https://hub.docker.com/repository/docker/jesselivezey/nersc_conda_3.7/general) which has the following standard scientific python libraries installed
 
- * TODO
+ * NumPy
+ * SciPy
+ * Scikit-Learn
 
 along with NERSC compatible version of
 
- * TODO
- 
- and an `mpi4py` [utilities library](https://github.com/BouchardLab/mpi_utils) the lab has developed.
- 
+ * mpi4py
+
+ and `mpi_utils`, an mpi4py [utilities library](https://github.com/BouchardLab/mpi_utils) the lab has developed.
+
  You can build python environments on top of this image for use for your projects. An example can be found at TODO.
- 
+
  ## Slurm scripts
- 
- There are many ways to use the HPC systems are NERSC. There are a few things to think about before starting 
+
+ There are many ways to use the HPC systems are NERSC. There are a few things to think about before starting
 
 Job types
 * Dependency
@@ -32,7 +34,7 @@ Job types
   * Small: <20
   * Medium: 20-100
   * Large: >100
- 
+
 Questions to ask before starting to write analysis code and Slurm scripts for use on NERSC
 * How many independent tasks do you want to run?
   * For less than 100 short/medium tasks, bash for-loops are often good enough. `mpi4py` is sometimes useful.
@@ -52,7 +54,7 @@ Questions to ask before starting to write analysis code and Slurm scripts for us
 * How many times might you re-run the code?
   * <5 times with not many hours: just make things work
   * Otherwise: you should plan your code for use on NERSC
-  
+
 Some useful tools:
 * Bash for-loops (simple hyperparameter search/scanning)
 * [TaskFarmer](https://docs.nersc.gov/jobs/workflow/taskfarmer/) fancy hyperparameter search
