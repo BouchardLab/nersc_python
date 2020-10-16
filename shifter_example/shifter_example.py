@@ -7,7 +7,9 @@ from mpi4py import MPI
 # Parse arguments
 parser = ArgumentParser()
 parser.add_argument('data', type=str, help='The input h5 file')
-data = parser.data
+args = parser.parse_args()
+print(args)
+data = args.data
 
 # Setup MPI sizes
 comm = MPI.COMM_WORLD
@@ -34,5 +36,5 @@ args = np.array(args, dtype=object)
 my_args = np.array_split(args, size)[rank]
 
 # Run this rank's tasks
-for arg in args:
+for arg in my_args:
     analysis(*arg)
