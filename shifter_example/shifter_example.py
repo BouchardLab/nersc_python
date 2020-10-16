@@ -8,7 +8,6 @@ from mpi4py import MPI
 parser = ArgumentParser()
 parser.add_argument('data', type=str, help='The input h5 file')
 args = parser.parse_args()
-print(args)
 data = args.data
 
 # Setup MPI sizes

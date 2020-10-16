@@ -3,7 +3,9 @@
 For python jobs with many tasks, using Docker containers with [Shifter](https://docs.nersc.gov/development/shifter/how-to-use/) can make their startup much more efficient. There is much better documentation about Docker, Shifter, and Slurm elsewhere, but this contains a basic outline of the process to provide some understanding
 of the example files/scripts.
 
-On your local machine build the example Dockerfile
+In this example, we can use the image I've made from the included Dockerfile. If you need to make your own environment, you can roughly follow these steps.
+
+On your local machine, edit and build the example Dockerfile
 
 ```bash
 docker build --no-cache -t "my_image" .
@@ -26,5 +28,3 @@ On a NERSC login node, pull the image into Shifter
 ```bash
 shifterimg -v pull docker:username/my_image:latest
 ```
-
-Now, `shifter_example.sh` can be used. It runs `shifter_example.py` on 4 subjects' datafiles. Within each subject, 1000 tasks are used to run some analysis on each channel and each timepoint using `mpi4py`.
