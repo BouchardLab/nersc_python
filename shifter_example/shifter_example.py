@@ -14,14 +14,19 @@ comm = MPI.COMM_WORLD
 size = comm.size
 rank = comm.rank
 
+# Analysis across channels and time
 n_channels = 64
 n_time = 100
 
+
+# Typically, this function would be in a module
 def analysis(file, ch_idx, time_idx):
     # Load some data
     # Do some analysis
     # Save some results
+    print('Rank: {}, ch: {}, time: {}, {}'.format(rank, ch_idx, time_idx, file))
     return
+
 
 # Select tasks for this rank
 args = list(product([data], np.arange(n_channels), np.arange(n_time)))
