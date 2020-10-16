@@ -12,6 +12,7 @@ The `docker` folder contains `Dockerfile` and `entrypoint.sh` files. `Dockerfile
 along with NERSC compatible version of
 
  * mpi4py
+ * Parallel h5py
 
  and `mpi_utils`, an mpi4py [utilities library](https://github.com/BouchardLab/mpi_utils) the lab has developed.
 

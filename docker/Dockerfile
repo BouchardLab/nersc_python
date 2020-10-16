@@ -57,8 +57,20 @@ RUN /sbin/ldconfig
 
 WORKDIR /home
 
-# Pull additional repos
-RUN git clone https://github.com/BouchardLab/mpi_utils.git /home/mpi_utils
+RUN wget https://support.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.10.5.tar.gz
+RUN tar -xzf hdf5-1.10.5.tar.gz
+WORKDIR hdf5-1.10.5
+ARG HDF5_MPI="ON"
+ARG cc=mpicc
+RUN ./configure --enable-parallel --enable-shared --prefix=/home/hdf5 && make && make install
+
+# Clone additional repos
+RUN git clone https://github.com/BouchardLab/mpi_utils.git /home/mpi_utils & git clone https://github.com/h5py/h5py /home/h5py
+
+# Install parallel h5py
+WORKDIR /home/h5py
+RUN HDF5_DIR=/home/hdf5 pip install --no-binary=h5py h5py
+WORKDIR /home
 
 # Install additional repos
 RUN pip install -e /home/mpi_utils
