@@ -16,7 +16,7 @@ along with NERSC compatible version of
 
  and `mpi_utils`, an mpi4py [utilities library](https://github.com/BouchardLab/mpi_utils) the lab has developed.
 
- You can build python environments on top of this image for use for your projects. An example can be found at TODO.
+ You can build python environments on top of this image for use for your projects. An example can be found at [shifter_example/Dockerfile](https://github.com/BouchardLab/nersc_python/blob/master/shifter_example/Dockerfile).
 
  ## Slurm scripts
 
