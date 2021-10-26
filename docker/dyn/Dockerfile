@@ -8,6 +8,7 @@ RUN conda env update -f environment.yml
 RUN conda update pytorch
 RUN pip install pykalman
 RUN pip install tqdm
+RUN pip install pycasso
 # Dummy command line argument to clear rebuild cache
 # Run with sudo docker build --build-arg cache_reset=??
 ARG cache_reset=unknown
@@ -25,6 +26,10 @@ RUN cd /home/affinewarp && pip install -e .
 
 # Switch to VAR branch
 RUN cd /home/PyUoI && git checkout var && pip install -e .
+
+# Need to run sudo mount -o bind ~/nse/normative_coding norm_coding_repo/ to create a symbolic link
+# COPY /norm_coding_repo /home/norm_coding
+# RUN cd /home/norm_coding && pip install -e .
 
 # Entrypoint
 ADD entrypoint.sh /home/entrypoint.sh

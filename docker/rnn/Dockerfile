@@ -12,7 +12,8 @@ ARG cache_reset=unknown
 RUN git clone https://github.com/akumar01/schwimmbad.git
 
 # This is a private repository, so it needs to be copied rather than cloned
-# Need to run sudo mount -o bind ~/nse/Recurrent-Neural-Network rnn_repo/ to create a symbolic link
+# Need to run sudo mount -o bind ~/nse/RNN rnn_repo/ to create a symbolic link
+# Make sure that RNN repo is swithched to MPI branch
 COPY /rnn_repo /home/rnn
 
 RUN cd /home/schwimmbad && pip install -e .
