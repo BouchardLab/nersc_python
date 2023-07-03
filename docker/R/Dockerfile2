@@ -1,0 +1,4 @@
+FROM akumar25/nersc_ergm:latest
+RUN apt-get install libopenmpi-dev -y
+RUN R -e "install.packages('Rmpi',dependencies=TRUE, repos='http://cran.rstudio.com/', configure.args=c('--with-Rmpi-type=MPICH'))"
+RUN R -e "install.packages('snow', dependencies=TRUE, repos='http://cran.rstudio.com/')"

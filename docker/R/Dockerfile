@@ -24,7 +24,10 @@ RUN apt-get install libcurl4-gnutls-dev libxml2-dev libssl-dev libfontconfig1-de
 RUN R -e "install.packages('devtools',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 
 # Install ergm from github
-RUN R -e "library(devtools); devtools::install_github('statnet/ergm', build_vignettes=FALSE)"
+RUN R -e "library(devtools); devtools::install_github('BouchardLab/ergm', build_vignettes=FALSE)"
+
+# Install other required R packages
+RUN R -e "install.packages(c('igraph', 'reticulate', 'intergraph'))"
 
 # Install python, schwimmbad, and mpi4py
 RUN apt-get update && apt-get install -y python3-dev python3-pip
@@ -41,3 +44,10 @@ RUN /sbin/ldconfig
 RUN python3 -m pip install mpi4py
 
 RUN python3 -m pip install schwimmbad
+
+# Entrypoint to run R script
+# ADD entrypoint.sh /home/entrypoint.sh
+# RUN chmod 777 /home/entrypoint.sh
+
+# ENTRYPOINT [ "/bin/bash", '/home/entrypoint.sh' ]
+# CMD ["/bin/bash"]
