@@ -4,11 +4,9 @@ FROM jesselivezey/nersc_conda_3.7:latest
 COPY ./environment.yml /home/environment.yml
 RUN conda env update -f environment.yml
 
-# Update pytorch
-RUN conda update pytorch
-RUN pip install pykalman
 RUN pip install tqdm
 RUN pip install pycasso
+RUN pip install pynwb
 # Dummy command line argument to clear rebuild cache
 # Run with sudo docker build --build-arg cache_reset=??
 ARG cache_reset=unknown
@@ -16,20 +14,16 @@ RUN git clone https://github.com/akumar01/DynamicalComponentsAnalysis
 RUN git clone https://github.com/akumar01/PyUoI
 RUN git clone https://github.com/akumar01/schwimmbad
 
-# Time warping software
-RUN git clone https://github.com/ahwillia/affinewarp/
-
 # This branch of DCA does not import torch.fft, which doesn't seem to work
 RUN cd /home/DynamicalComponentsAnalysis && git checkout nofft && pip install -e .
 RUN cd /home/schwimmbad && pip install -e .
-RUN cd /home/affinewarp && pip install -e .
 
 # Switch to VAR branch
 RUN cd /home/PyUoI && git checkout var && pip install -e .
 
-# Need to run sudo mount -o bind ~/nse/normative_coding norm_coding_repo/ to create a symbolic link
-# COPY /norm_coding_repo /home/norm_coding
-# RUN cd /home/norm_coding && pip install -e .
+# Need to run sudo mount -o bind ~/nse/DCA_research dca_research/ to create a symbolic link
+COPY /dca_research /home/dca_research
+RUN cd /home/dca_research && pip install -e .
 
 # Entrypoint
 ADD entrypoint.sh /home/entrypoint.sh
